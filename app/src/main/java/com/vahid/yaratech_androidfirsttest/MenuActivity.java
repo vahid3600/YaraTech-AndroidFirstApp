@@ -1,8 +1,11 @@
 package com.vahid.yaratech_androidfirsttest;
 
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,14 +13,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private TextView mTextMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +76,24 @@ public class MenuActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_menu:
+                    RegisterFragment registerFragment = new RegisterFragment();
+                    // Begin the transaction
+                    FragmentManager fragmentManager1 = getSupportFragmentManager();
+                    // Replace the contents of the container with the new fragment
+                    fragmentManager1.beginTransaction()
+                            .add(R.id.fragment_container, registerFragment)
+                            .commit();
 
                     return true;
                 case R.id.navigation_category:
+
+                    CategoryFragment categoryFragment = new CategoryFragment();
+                    // Begin the transaction
+                    FragmentManager fragmentManager2 = getSupportFragmentManager();
+                    // Replace the contents of the container with the new fragment
+                    fragmentManager2.beginTransaction()
+                            .add(R.id.fragment_container, categoryFragment)
+                            .commit();
 
                     return true;
             }
