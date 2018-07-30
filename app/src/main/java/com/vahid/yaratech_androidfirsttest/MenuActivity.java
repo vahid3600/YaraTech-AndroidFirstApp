@@ -77,25 +77,21 @@ public class MenuActivity extends AppCompatActivity
             switch (item.getItemId()) {
                 case R.id.navigation_menu:
                     RegisterFragment registerFragment = new RegisterFragment();
-                    // Begin the transaction
                     FragmentManager fragmentManager1 = getSupportFragmentManager();
-                    // Replace the contents of the container with the new fragment
                     fragmentManager1.beginTransaction()
-                            .add(R.id.fragment_container, registerFragment)
+                            .replace(R.id.fragment_container, registerFragment)
                             .commit();
 
-                    return true;
+                    break;
                 case R.id.navigation_category:
 
                     CategoryFragment categoryFragment = new CategoryFragment();
-                    // Begin the transaction
                     FragmentManager fragmentManager2 = getSupportFragmentManager();
-                    // Replace the contents of the container with the new fragment
                     fragmentManager2.beginTransaction()
-                            .add(R.id.fragment_container, categoryFragment)
+                            .replace(R.id.fragment_container, categoryFragment)
                             .commit();
 
-                    return true;
+                    break;
             }
             return false;
         }
