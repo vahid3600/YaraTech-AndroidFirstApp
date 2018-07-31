@@ -26,6 +26,8 @@ public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FragmentManager fragmentManager;
     Toolbar toolbar;
+    Menu menu;
+    MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,7 @@ public class MenuActivity extends AppCompatActivity
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        Menu menu = navigation.getMenu();
-        MenuItem menuItem = menu.getItem(0);
-        menuItem.setChecked(true);
+        menu = navigation.getMenu();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -105,6 +104,8 @@ public class MenuActivity extends AppCompatActivity
             switch (item.getItemId()) {
                 case R.id.navigation_menu:
                     toolbar.setTitle(R.string.title_menu);
+                    menuItem = menu.getItem(0);
+                    menuItem.setChecked(true);
                     RegisterFragment registerFragment = new RegisterFragment();
                     FragmentManager fragmentManager1 = getSupportFragmentManager();
                     fragmentManager1.beginTransaction()
@@ -113,6 +114,8 @@ public class MenuActivity extends AppCompatActivity
 
                     break;
                 case R.id.navigation_category:
+                    menuItem = menu.getItem(1);
+                    menuItem.setChecked(true);
                     toolbar.setTitle(R.string.title_category);
                     CategoryFragment categoryFragment = new CategoryFragment();
                     FragmentManager fragmentManager2 = getSupportFragmentManager();
