@@ -1,10 +1,9 @@
-package com.vahid.yaratech_androidfirsttest;
+package com.vahid.yaratech_androidfirsttest.Activitys;
 
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,8 +14,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.vahid.yaratech_androidfirsttest.Fragments.AboutFragment;
+import com.vahid.yaratech_androidfirsttest.Fragments.CategoryFragment;
+import com.vahid.yaratech_androidfirsttest.Fragments.ContactFragment;
+import com.vahid.yaratech_androidfirsttest.Fragments.RegisterFragment;
+import com.vahid.yaratech_androidfirsttest.R;
+
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    FragmentManager fragmentManager;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +31,7 @@ public class MenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_menu);
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -57,10 +64,24 @@ public class MenuActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-
+            toolbar.setTitle(R.string.profile);
         } else if (id == R.id.nav_about_us) {
-
+            //change title of screen
+            toolbar.setTitle(R.string.about_us);
+            AboutFragment aboutFragment = new AboutFragment();
+            fragmentManager = getSupportFragmentManager();
+            //replace fragment in menuscreen
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, aboutFragment)
+                    .commit();
         } else if (id == R.id.nav_connect_with_us) {
+            toolbar.setTitle(R.string.connect_with_us);
+            ContactFragment contactFragment = new ContactFragment();
+            fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, contactFragment)
+                    .commit();
+
 
         }
 
@@ -76,6 +97,7 @@ public class MenuActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_menu:
+                    toolbar.setTitle(R.string.title_menu);
                     RegisterFragment registerFragment = new RegisterFragment();
                     FragmentManager fragmentManager1 = getSupportFragmentManager();
                     fragmentManager1.beginTransaction()
@@ -84,7 +106,7 @@ public class MenuActivity extends AppCompatActivity
 
                     break;
                 case R.id.navigation_category:
-
+                    toolbar.setTitle(R.string.title_category);
                     CategoryFragment categoryFragment = new CategoryFragment();
                     FragmentManager fragmentManager2 = getSupportFragmentManager();
                     fragmentManager2.beginTransaction()

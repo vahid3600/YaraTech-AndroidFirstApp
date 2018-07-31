@@ -1,4 +1,4 @@
-package com.vahid.yaratech_androidfirsttest;
+package com.vahid.yaratech_androidfirsttest.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.vahid.yaratech_androidfirsttest.R;
 
 public class CategoryFragment extends Fragment {
 

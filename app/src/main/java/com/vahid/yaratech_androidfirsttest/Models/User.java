@@ -1,4 +1,4 @@
-package com.vahid.yaratech_androidfirsttest;
+package com.vahid.yaratech_androidfirsttest.Models;
 
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
@@ -15,7 +15,7 @@ public class User{
     String email;
 
     @ParcelConstructor
-    User(String name, String familyName, String email) {
+    public User(String name, String familyName, String email) {
         this.name = name;
         this.familyName = familyName;
         this.email = email;
