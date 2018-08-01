@@ -3,6 +3,7 @@ package com.vahid.yaratech_androidfirsttest.Activitys;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.vahid.yaratech_androidfirsttest.Models.User;
@@ -18,6 +19,7 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
         username = (TextView) findViewById(R.id.name);
         family = (TextView) findViewById(R.id.family);

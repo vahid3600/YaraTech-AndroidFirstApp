@@ -1,8 +1,13 @@
 package com.vahid.yaratech_androidfirsttest.Activitys;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
+import com.vahid.yaratech_androidfirsttest.Fragments.ButtonFragment;
+import com.vahid.yaratech_androidfirsttest.Fragments.FamilyFragment;
+import com.vahid.yaratech_androidfirsttest.Fragments.NameFragment;
 import com.vahid.yaratech_androidfirsttest.R;
 
 public class FormActivity extends AppCompatActivity {
@@ -11,5 +16,18 @@ public class FormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+        getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+        NameFragment nameFragment = new NameFragment();
+        FamilyFragment familyFragment = new FamilyFragment();
+        ButtonFragment buttonFragment = new ButtonFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().add(R.id.name_container, nameFragment)
+                .commit();
+        manager.beginTransaction().add(R.id.family_container, familyFragment)
+                .commit();
+        manager.beginTransaction().add(R.id.button_container, buttonFragment)
+                .commit();
+
     }
 }
