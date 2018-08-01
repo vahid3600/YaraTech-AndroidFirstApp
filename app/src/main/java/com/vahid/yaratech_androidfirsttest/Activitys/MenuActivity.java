@@ -1,6 +1,7 @@
 package com.vahid.yaratech_androidfirsttest.Activitys;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -89,6 +90,9 @@ public class MenuActivity extends AppCompatActivity
                     .commit();
 
 
+        } else if (id == R.id.form_activity) {
+            Intent intent = new Intent(MenuActivity.this, FormActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

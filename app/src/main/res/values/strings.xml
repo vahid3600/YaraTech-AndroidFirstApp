@@ -25,4 +25,5 @@
     <string name="github_link">Github link : https://github.com/vahid3600</string>
     <string name="apps_link">Released Apps : https://cafebazaar.ir/developer/azmoonsara</string>
     <string name="about_me">My name is vahid and i am an android developer, if you want to contact me or see my projects go to contact us in menu and use my gmail or github link   Good luck.</string>
+    <string name="form_activity">Form Activity</string>
 </resources>
