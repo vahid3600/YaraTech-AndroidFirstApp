@@ -16,15 +16,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.vahid.yaratech_androidfirsttest.Fragments.AboutFragment;
 import com.vahid.yaratech_androidfirsttest.Fragments.CategoryFragment;
 import com.vahid.yaratech_androidfirsttest.Fragments.ContactFragment;
 import com.vahid.yaratech_androidfirsttest.Fragments.RegisterFragment;
 import com.vahid.yaratech_androidfirsttest.R;
+import com.vahid.yaratech_androidfirsttest.Retrofit.MainActivity;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    BottomNavigationView navigation;
+    LinearLayout linearLayout;
     FragmentManager fragmentManager;
     Toolbar toolbar;
     Menu menu;
@@ -39,7 +43,8 @@ public class MenuActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        linearLayout = (LinearLayout) findViewById(R.id.fragment_container);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         menu = navigation.getMenu();
 
@@ -79,21 +84,25 @@ public class MenuActivity extends AppCompatActivity
             fragmentManager = getSupportFragmentManager();
             //replace fragment in menuscreen
             fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, aboutFragment)
+                    .replace(R.id.menu_container, aboutFragment)
                     .commit();
         } else if (id == R.id.nav_connect_with_us) {
             toolbar.setTitle(R.string.connect_with_us);
             ContactFragment contactFragment = new ContactFragment();
             fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, contactFragment)
+                    .replace(R.id.menu_container, contactFragment)
                     .commit();
 
 
         } else if (id == R.id.form_activity) {
             Intent intent = new Intent(MenuActivity.this, FormActivity.class);
             startActivity(intent);
+        } else if (id == R.id.retrofit_activity) {
+            Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+            startActivity(intent);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

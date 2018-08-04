@@ -16,6 +16,9 @@
         <item
             android:id="@+id/form_activity"
             android:title="@string/form_activity" />
+        <item
+            android:id="@+id/retrofit_activity"
+            android:title="@string/retrofit_activity" />
     </group>
 
 </menu>

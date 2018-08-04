@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activitys.InfoActivity" />
-        <activity android:name=".Activitys.FormActivity"></activity>
+        <activity android:name=".Activitys.FormActivity" />
+        <activity android:name=".Retrofit.MainActivity"></activity>
     </application>
 
 </manifest>
