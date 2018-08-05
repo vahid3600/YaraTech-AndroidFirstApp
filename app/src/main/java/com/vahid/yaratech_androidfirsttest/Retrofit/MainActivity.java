@@ -1,6 +1,7 @@
 package com.vahid.yaratech_androidfirsttest.Retrofit;
 
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,27 +19,25 @@ public class MainActivity extends AppCompatActivity implements UsersFragment.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Retrofit Activity");
-        UsersFragment usersFragment = new UsersFragment();
-        manager = getSupportFragmentManager();
-        manager.beginTransaction()
-                .replace(R.id.fragment_container, usersFragment)
-                .commit();
+        setFragment(UsersFragment.newInstance());
+    }
 
+    public void setFragment(Fragment fragment) {
+        manager = getSupportFragmentManager();
+        if (fragment instanceof UsersFragment) {
+            manager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+        }
+        if (fragment instanceof CommentsFragment) {
+            manager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+        }
     }
 
     @Override
     public void showComments(int id) {
-
-        Log.e("main",id+"");
-        SharedPreferences sp = getSharedPreferences("user_id", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putInt("id_value", id);
-        editor.commit();
-
-        CommentsFragment commentsFragment = new CommentsFragment();
-        manager.beginTransaction()
-                .replace(R.id.fragment_container, commentsFragment)
-                .commit();
-
+        setFragment(CommentsFragment.newInstance(id));
     }
 }

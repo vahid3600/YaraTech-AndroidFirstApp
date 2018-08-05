@@ -31,6 +31,13 @@ public class UsersFragment extends Fragment implements UserRecyclerViewAdapter.I
         // Required empty public constructor
     }
 
+    public static UsersFragment newInstance() {
+        Bundle bundle = new Bundle();
+        UsersFragment usersFragment = new UsersFragment();
+        usersFragment.setArguments(bundle);
+        return usersFragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

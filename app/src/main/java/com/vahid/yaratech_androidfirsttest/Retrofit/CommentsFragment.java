@@ -33,6 +33,14 @@ public class CommentsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static Fragment newInstance(int user_id) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("userID", user_id);
+        CommentsFragment commentsFragment = new CommentsFragment();
+        commentsFragment.setArguments(bundle);
+        return commentsFragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,9 +48,8 @@ public class CommentsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_comments, container, false);
         progressBar = view.findViewById(R.id.progressbar);
         progressBar.setVisibility(View.GONE);
-        SharedPreferences sp = this.getActivity().getSharedPreferences("user_id", Activity.MODE_PRIVATE);
-        int id = sp.getInt("id_value", -1);
         recyclerView = view.findViewById(R.id.comments_recyclerview);
+        int id = getArguments().getInt("userID");
         getData(id);
         return view;
     }
@@ -81,5 +88,4 @@ public class CommentsFragment extends Fragment {
             }
         });
     }
-
 }
