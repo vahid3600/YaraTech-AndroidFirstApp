@@ -1,4 +1,4 @@
-package com.vahid.yaratech_androidfirsttest.Retrofit;
+package com.vahid.yaratech_androidfirsttest.Retrofit.ui.user;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vahid.yaratech_androidfirsttest.R;
+import com.vahid.yaratech_androidfirsttest.Retrofit.data.model.User;
 
 import java.util.List;
 
@@ -22,10 +23,15 @@ public class UserRecyclerViewAdapter extends RecyclerView.Adapter<UserRecyclerVi
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    UserRecyclerViewAdapter(Context context, ItemClickListener itemClickListener, List<User> users) {
+    UserRecyclerViewAdapter(Context context, ItemClickListener itemClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.mClickListener = itemClickListener;
-        this.users = users;
+    }
+
+    public void addData(List<User> users) {
+        for (User user : users)
+            users.add(user);
+        notifyDataSetChanged();
     }
 
     // inflates the row layout from xml when needed

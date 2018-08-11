@@ -1,4 +1,4 @@
-package com.vahid.yaratech_androidfirsttest.Retrofit;
+package com.vahid.yaratech_androidfirsttest.retrofit.ui.comment;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vahid.yaratech_androidfirsttest.R;
+import com.vahid.yaratech_androidfirsttest.retrofit.data.model.Comment;
 
 import java.util.List;
 
@@ -21,9 +22,13 @@ public class CommentRecyclerViewAdapter extends RecyclerView.Adapter<CommentRecy
     private LayoutInflater mInflater;
 
     // data is passed into the constructor
-    CommentRecyclerViewAdapter(Context context, List<Comment> comments) {
+    CommentRecyclerViewAdapter(Context context) {
         this.mInflater = LayoutInflater.from(context);
-        this.comments = comments;
+    }
+
+    public void addData(List<Comment> comments) {
+        for (Comment comment : comments)
+            comments.add(comment);
     }
 
     // inflates the row layout from xml when needed

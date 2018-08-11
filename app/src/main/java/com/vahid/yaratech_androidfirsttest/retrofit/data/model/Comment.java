@@ -1,4 +1,4 @@
-package com.vahid.yaratech_androidfirsttest.Retrofit;
+package com.vahid.yaratech_androidfirsttest.Retrofit.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,25 +7,31 @@ import com.google.gson.annotations.SerializedName;
  * Created by Vah on 8/4/2018.
  */
 
-public class User {
+public class Comment {
+
+    @SerializedName("postId")
+    @Expose
+    private int postId;
     @SerializedName("id")
     @Expose
     private int id;
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("username")
-    @Expose
-    private String username;
     @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("phone")
+    @SerializedName("body")
     @Expose
-    private String phone;
-    @SerializedName("website")
-    @Expose
-    private String website;
+    private String body;
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
 
     public int getId() {
         return id;
@@ -43,14 +49,6 @@ public class User {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -59,20 +57,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getBody() {
+        return body;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
+    public void setBody(String body) {
+        this.body = body;
     }
 
 }

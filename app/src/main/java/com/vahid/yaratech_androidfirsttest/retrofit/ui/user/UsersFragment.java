@@ -1,4 +1,4 @@
-package com.vahid.yaratech_androidfirsttest.Retrofit;
+package com.vahid.yaratech_androidfirsttest.Retrofit.ui.user;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,22 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.vahid.yaratech_androidfirsttest.R;
+import com.vahid.yaratech_androidfirsttest.Retrofit.data.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class UsersFragment extends Fragment implements UserRecyclerViewAdapter.ItemClickListener {
+public class UsersFragment extends Fragment implements UserContract.View, UserRecyclerViewAdapter.ItemClickListener {
 
     ProgressBar progressBar;
     RecyclerView recyclerView;
+    UserRecyclerViewAdapter userRecyclerViewAdapter;
+    UserContract.Presenter presenter;
     List<User> usersList = new ArrayList<>();
 
     public UsersFragment() {
@@ -52,42 +50,19 @@ public class UsersFragment extends Fragment implements UserRecyclerViewAdapter.I
                 getContext(),
                 LinearLayoutManager.VERTICAL,
                 false);
+        presenter = new UserPresenter(getContext(), this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        //method to get data and show in recyclerview
+        userRecyclerViewAdapter = new UserRecyclerViewAdapter(
+                getContext(),
+                UsersFragment.this);
+        recyclerView.setAdapter(userRecyclerViewAdapter);
         getData();
         return view;
     }
 
     private void getData() {
-        progressBar.setVisibility(View.VISIBLE);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        presenter.fetchUserFromRemote();
 
-        Services services = retrofit.create(Services.class);
-        Call<List<User>> users = services.listUsers();
-        users.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                progressBar.setVisibility(View.GONE);
-                if (response.isSuccessful()) {
-                    usersList = response.body();
-                    UserRecyclerViewAdapter userRecyclerViewAdapter = new UserRecyclerViewAdapter(
-                            getContext(),
-                            UsersFragment.this,
-                            usersList);
-                    recyclerView.setAdapter(userRecyclerViewAdapter);
-                } else {
-                    Log.e("tag", response.errorBody() + "");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                Log.e("tag", t.toString() + "");
-            }
-        });
     }
 
     @Override
@@ -95,6 +70,26 @@ public class UsersFragment extends Fragment implements UserRecyclerViewAdapter.I
         ((UsersFragment.OnClick) getContext()).showComments(usersList.get(position).getId());
         Log.e("fragment", position + "");
 
+    }
+
+    @Override
+    public void showListUser(List<User> users) {
+        userRecyclerViewAdapter.addData(users);
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(View.GONE);
     }
 
     public interface OnClick {

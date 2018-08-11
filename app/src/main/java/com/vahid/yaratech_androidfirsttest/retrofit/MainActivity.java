@@ -1,14 +1,13 @@
-package com.vahid.yaratech_androidfirsttest.Retrofit;
+package com.vahid.yaratech_androidfirsttest.retrofit;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
-import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.vahid.yaratech_androidfirsttest.R;
+import com.vahid.yaratech_androidfirsttest.retrofit.ui.comment.CommentsFragment;
+import com.vahid.yaratech_androidfirsttest.retrofit.ui.user.UsersFragment;
 
 public class MainActivity extends AppCompatActivity implements UsersFragment.OnClick {
 
